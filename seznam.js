@@ -105,27 +105,29 @@ const filmy = [
 	},
 ]
 
-//My code
 const filmElem = document.querySelector('#seznam-filmu');
 filmElem.textContent = '';
 
-const filmCard = document.getElementById('seznam-filmu');
 filmy.forEach((film) => {
-  filmCard.innerHTML += `<div class="col">
-  <div class="card">
-    <img
-      src="${film.plakat.url}"
-      width="780"
-      height="520"
-      class="card-img-top"
-      alt="plakát"
-    />
-    <div class="card-body">
-      <h5 class="card-title">${film.nazev}</h5>
-      <p class="card-text">${film.ochutnavka}</p>
-      <a href="film.html" class="btn btn-primary">Přehrát</a>
-    </div>
-  </div>
-</div>`
-})
+    const filmItem = document.createElement("div");
+    filmItem.classList.add("col");
 
+    filmItem.innerHTML = `
+        <div class="card">
+            <img
+                src="${film.plakat.url}"
+                width="780"
+                height="520"
+                class="card-img-top"
+                alt="plakát"
+            />
+            <div class="card-body">
+                <h5 class="card-title">${film.nazev}</h5>
+                <p class="card-text">${film.ochutnavka}</p>
+                <a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a>
+            </div>
+        </div>
+    `;
+
+    filmElem.appendChild(filmItem);
+});

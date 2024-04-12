@@ -104,3 +104,21 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+// My code
+const filmId = window.location.hash.slice(1);
+
+const film = filmy.find(f => f.id === filmId);
+
+if (film) {
+  const filmTitle = document.querySelector('#detail-filmu .card-title');
+  const filmDescription = document.querySelector('#detail-filmu .card-text');
+  const filmPoster = document.querySelector('#detail-filmu img');
+
+  filmTitle.textContent = film.nazev;
+  filmDescription.textContent = film.popis;
+  filmPoster.src = film.plakat.url;
+  filmPoster.alt = film.nazev;
+  filmPoster.width = film.plakat.sirka;
+  filmPoster.height = film.plakat.vyska;
+}
