@@ -105,7 +105,8 @@ const filmy = [
 	},
 ]
 
-// My code
+// Details
+
 const filmId = window.location.hash.slice(1);
 
 const film = filmy.find(f => f.id === filmId);
@@ -157,3 +158,37 @@ if (daysDiff === 0) {
   Premiéra <strong>${formattedPrDate}</strong>, což bude za ${daysDiff} ${dayWord}.
   `;
 } 
+// Hodnoceni
+
+function highlightStars(num) {
+	const stars = document.querySelectorAll('.fa-star');
+	stars.forEach((star, index) => {
+			if (index < num) {
+					star.classList.remove('far');
+					star.classList.add('fas');
+			} else {
+					star.classList.remove('fas');
+					star.classList.add('far');
+			}
+	});
+}
+
+const stars = document.querySelectorAll('.fa-star');
+
+stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+        const starIndex = index + 1;
+        highlightStars(starIndex);
+        console.log(`Користувач обрав ${starIndex} зірочку.`);
+    });
+
+    star.addEventListener('mouseenter', () => {
+        const starIndex = index + 1;
+        highlightStars(starIndex);
+    });
+
+    star.addEventListener('mouseleave', () => {
+        const selectedStars = document.querySelectorAll('.fa-star.fas').length;
+        highlightStars(selectedStars);
+    });
+});
