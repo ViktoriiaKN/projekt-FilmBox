@@ -192,3 +192,34 @@ stars.forEach((star, index) => {
         highlightStars(selectedStars);
     });
 });
+
+//poznamka
+
+const noteForm = document.querySelector('#note-form');
+
+noteForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const messageInput = document.querySelector('#message-input');
+
+  const message = messageInput.value.trim();
+
+  if (message === '') {
+    messageInput.classList.add('is-invalid');
+    return; 
+  }
+
+  const termsCheckbox = document.querySelector('#terms-checkbox');
+
+  if (!termsCheckbox.checked) {
+    termsCheckbox.classList.add('is-invalid');
+    return;
+  }
+
+  const noteParagraph = document.createElement('p');
+  noteParagraph.classList.add('card-text');
+  noteParagraph.textContent = message;
+
+  noteForm.innerHTML = ''; 
+  noteForm.appendChild(noteParagraph); 
+});
+
