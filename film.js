@@ -198,20 +198,24 @@ stars.forEach((star, index) => {
 const noteForm = document.querySelector('#note-form');
 
 noteForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+  event.preventDefault(); //not sending right away
+
+  //checking if there's text in the input form
   const messageInput = document.querySelector('#message-input');
 
   const message = messageInput.value.trim();
 
   if (message === '') {
     messageInput.classList.add('is-invalid');
+    messageInput.focus();
     return; 
   }
-
+  //checking if checkbox is ticked
   const termsCheckbox = document.querySelector('#terms-checkbox');
 
   if (!termsCheckbox.checked) {
     termsCheckbox.classList.add('is-invalid');
+    termsCheckbox.focus();
     return;
   }
 
