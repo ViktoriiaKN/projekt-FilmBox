@@ -122,3 +122,38 @@ if (film) {
   filmPoster.width = film.plakat.sirka;
   filmPoster.height = film.plakat.vyska;
 }
+
+//premiere dates
+const today = dayjs();
+const premiereDate = dayjs(film.premiera); 
+const formattedPrDate = premiereDate.format('D. M. YYYY');
+//difference in dates
+const daysDiff = premiereDate.diff(today, 'days');
+
+const premiereElement = document.getElementById('premiera');
+
+let dayWord;
+
+if (daysDiff === 0) {
+  premiereElement.innerHTML = `
+  Premiéra <strong>${formattedPrDate}</strong>, což je dnes.`;
+} else if (today.isAfter(premiereDate)) {
+    if (daysDiff === -1) {
+      dayWord = 'dnem';
+    } else {
+      dayWord = 'dny';
+    }
+    premiereElement.innerHTML = `
+    Premiéra <strong>${formattedPrDate}</strong>, což bylo před ${daysDiff} ${dayWord}.`;
+  } else {
+    if (daysDiff === 1) {
+      dayWord = 'dnem';
+    } else if (daysDiff === 2 || daysDiff === 3 || daysDiff === 4) {
+      dayWord = 'dny'
+    } else {
+      dayWord = 'dní'
+    }
+  premiereElement.innerHTML = `
+  Premiéra <strong>${formattedPrDate}</strong>, což bude za ${daysDiff} ${dayWord}.
+  `;
+} 
